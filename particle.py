@@ -3,6 +3,7 @@ from mapUtilities import *
 from utilities import *
 from numpy import cos, sin
 import numpy as np
+import math
 
 class particle:
 
@@ -78,7 +79,7 @@ class particle:
 
     def __poseToTranslationMatrix(self):
         x, y, th = self.getPose()
-
+        th = th + (math.pi/2)
         
         translation = np.array([[cos(th), -sin(th),x],
                                 [sin(th), cos(th),y],

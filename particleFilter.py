@@ -23,19 +23,21 @@ from geometry_msgs.msg import Point, PoseWithCovarianceStamped
 from std_msgs.msg import ColorRGBA
 from nav_msgs.msg import OccupancyGrid
 
+import math
+
 
 
 
 class particleFilter(Node):
 
-    def __init__(self, mapFilename="/home/turtlebot5/ME597_students/your_map/room.yaml", numParticles=500):
+    def __init__(self, mapFilename="/home/mte544/me597_lab3/your_map/room.yaml", numParticles=500):
         
         super().__init__("particleFiltering")
         
         self.tic = time.time()
 
         qos_profile_odom=QoSProfile(reliability=ReliabilityPolicy.BEST_EFFORT, durability=DurabilityPolicy.VOLATILE, depth=10)
-        qos_profile_laserScanner = QoSProfile(reliability=ReliabilityPolicy.RELIABLE,
+        qos_profile_laserScanner = QoSProfile(reliability=ReliabilityPolicy.BEST_EFFORT,
                                               durability=DurabilityPolicy.VOLATILE,
                                               depth=10)
 
